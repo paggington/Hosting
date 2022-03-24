@@ -20,4 +20,10 @@ export class SnackErrorAuthService {
       horizontalPosition:'start',
     })
   }
+  errorVideo(message:string){
+    this.snack.open(message,'OK',{
+      duration:5000,
+      horizontalPosition:'start'
+    })
+  }
 }
