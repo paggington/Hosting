@@ -13,7 +13,8 @@ import {User} from "../../models/User.model";
 })
 export class LoginComponent implements OnInit {
   form!: FormGroup;
-  user!:User;
+  user!: User;
+
   constructor(private authService: AuthService,
               private loginErrorSnack: SnackErrorAuthService,
               private formB: FormBuilder,
@@ -29,17 +30,22 @@ export class LoginComponent implements OnInit {
       }
     )
   }
-  logout(){
+
+  logout() {
     this.authService.logout();
     this.router.navigateByUrl('/login');
   }
+
   login() {
     this.authService.login(this.form.get('username')?.value, this.form.get('password')?.value).subscribe(par => {
       localStorage.setItem('a_token', par.access_token);
       localStorage.setItem('r_token', par.refresh_token);
       if (this.authService.tokenIsNotExpired(par.access_token)) {
         this.loginErrorSnack.successLogin('Success!');
-        this.getUserByUsername(this.form.get('username')?.value);
+        this.userService.getUserDataByUsername().subscribe(p => {
+          console.log(JSON.stringify(p))
+          localStorage.setItem('currentUser', JSON.stringify(p));
+        })
         this.router.navigateByUrl("/");
       } else {
         this.form.reset();
@@ -51,12 +57,14 @@ export class LoginComponent implements OnInit {
       }
     });
   }
-  isLoggedIn(){
+
+  isLoggedIn() {
     return this.authService.isLoggedIn();
   }
-  async getUserByUsername(username: string) {
-    this.userService.getUserDataByUsername(username).subscribe(user => {
-      this.user=user;
+
+  async getUserByUsername() {
+    this.userService.getUserDataByUsername().subscribe(user => {
+      this.userService.user = user;
     });
   }
 }
