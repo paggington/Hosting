@@ -11,12 +11,12 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import { UserPageComponent } from './components/user-page/user-page.component';
 import {JWT_OPTIONS, JwtHelperService, JwtModule, JwtModuleOptions} from "@auth0/angular-jwt";
+import { VideoComponent } from './components/video/video.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    UserPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,8 +29,11 @@ import {JWT_OPTIONS, JwtHelperService, JwtModule, JwtModuleOptions} from "@auth0
     JwtModule
   ],
   providers: [
-    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    {provide: JWT_OPTIONS, useValue: JWT_OPTIONS},
     JwtHelperService
+  ],
+  exports: [
+    VideoComponent
   ],
   bootstrap: [AppComponent]
 })
