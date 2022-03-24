@@ -11,11 +11,16 @@ import {MatListModule} from "@angular/material/list";
 import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatCardModule} from "@angular/material/card";
 import {MatTableModule} from "@angular/material/table";
+import {VideoComponent} from "../../components/video/video.component";
+import {UserPageComponent} from "../../components/user-page/user-page.component";
+import {LoginComponent} from "../../components/login/login.component";
 
 
 const components=[
   ShellComponent,
-  MainPageComponent
+  MainPageComponent,
+  VideoComponent,
+  UserPageComponent,
 ]
 const modules=[
   CommonModule,
