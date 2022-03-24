@@ -1,0 +1,35 @@
+<mat-toolbar>
+  <button mat-icon-button class="example-icon" aria-label="" (click)="drawer.open()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>🤌InTouch</span>
+  <span class="example-spacer"></span>
+  <form class="example-form">
+    <mat-form-field class="example-full-width" appearance="standard">
+      <input matInput placeholder="Search">
+      <mat-icon class="material-icons search-button" style="cursor: pointer;">search</mat-icon>
+    </mat-form-field>
+  </form>
+  <span class="example-spacer"></span>
+  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <mat-icon></mat-icon>
+  </button>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <mat-icon>share</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport (click)="drawer.close()">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/" (click)="drawer.close()">Home</a>
+      <a mat-list-item routerLink="/login" (click)="drawer.close()">Login</a>
+      <a mat-list-item routerLink="/kanban" (click)="drawer.close()">Kanban Demo</a>
+      <a mat-list-item routerLink="/customers" (click)="drawer.close()">SSR Demo</a>
+    </mat-nav-list>
+  </mat-sidenav>
+</mat-sidenav-container>
+
+<ng-content></ng-content>
+

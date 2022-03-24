@@ -1,0 +1,28 @@
+<div style="width: 100%;text-align: center">
+  <mat-card style="width: 100%" *ngIf="!isLoggedIn()">
+    <mat-card-title>Login</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="form">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Username</mat-label>
+          <input matInput placeholder="Username" formControlName="username">
+        </mat-form-field>
+        <br>
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput placeholder="Password" type="password" formControlName="password">
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-footer>
+      <button mat-button color="accent" (click)="login()">Log In</button>
+      <button mat-button>Register</button>
+    </mat-card-footer>
+  </mat-card>
+  <mat-card style="width: 100%" *ngIf="isLoggedIn()">
+    <mat-card-title>Log out from @ {{user.username}}?</mat-card-title>
+    <mat-card-content>
+      <button mat-button (click)="logout()">Logout</button>
+    </mat-card-content>
+  </mat-card>
+</div>
