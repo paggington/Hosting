@@ -11,8 +11,9 @@
     </mat-form-field>
   </form>
   <span class="example-spacer"></span>
-  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-    <mat-icon></mat-icon>
+  <p>{{user.username}}</p>
+  <button mat-icon-button class="example-icon favorite-icon" >
+    <img [src]="imageBlobUrl" style="height: 40px;width: auto;" alt="@{{user.username}}">
   </button>
   <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
     <mat-icon>share</mat-icon>
@@ -23,8 +24,8 @@
   <mat-sidenav #drawer class="sidenav" fixedInViewport (click)="drawer.close()">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item routerLink="/" (click)="drawer.close()">Home</a>
-      <a mat-list-item routerLink="/login" (click)="drawer.close()">Login</a>
+      <a mat-list-item href="/" (click)="drawer.close()">Home</a>
+      <a mat-list-item href="/login" (click)="drawer.close()">Login</a>
       <a mat-list-item routerLink="/kanban" (click)="drawer.close()">Kanban Demo</a>
       <a mat-list-item routerLink="/customers" (click)="drawer.close()">SSR Demo</a>
     </mat-nav-list>
