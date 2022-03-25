@@ -46,7 +46,11 @@ export class LoginComponent implements OnInit {
           console.log(JSON.stringify(p))
           localStorage.setItem('currentUser', JSON.stringify(p));
         })
-        this.router.navigateByUrl("/");
+        this.router.navigate(['']).then((navigated: boolean) => {
+          if (navigated) {
+            this.userService.getUserProfileImage();
+          }
+        });
       } else {
         this.form.reset();
         this.loginErrorSnack.errorLogin();
