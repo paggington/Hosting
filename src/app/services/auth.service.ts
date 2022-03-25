@@ -22,7 +22,7 @@ export class AuthService implements OnInit{
     this.user=user;
   })
   }
-  async logout(){
+  logout(){
     localStorage.clear();
     // @ts-ignore
     this.user=null;
