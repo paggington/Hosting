@@ -1,4 +1,4 @@
-<mat-toolbar>
+<mat-toolbar *ngIf="!!user">
   <button mat-icon-button class="example-icon" aria-label="" (click)="drawer.open()">
     <mat-icon>menu</mat-icon>
   </button>
@@ -12,14 +12,34 @@
   </form>
   <span class="example-spacer"></span>
   <p>{{user.username}}</p>
-  <button mat-icon-button class="example-icon favorite-icon" >
+  <button mat-icon-button class="example-icon favorite-icon" *ngIf="!!user">
     <img [src]="imageBlobUrl" style="height: 40px;width: auto;" alt="@{{user.username}}">
   </button>
   <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
     <mat-icon>share</mat-icon>
   </button>
 </mat-toolbar>
+<mat-toolbar *ngIf="!user">
+  <button mat-icon-button class="example-icon" aria-label="" (click)="drawer.open()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>🤌InTouch</span>
+  <span class="example-spacer"></span>
+  <form class="example-form">
+    <mat-form-field class="example-full-width" appearance="standard">
+      <input matInput placeholder="Search">
+      <mat-icon class="material-icons search-button" style="cursor: pointer;">search</mat-icon>
+    </mat-form-field>
+  </form>
+  <span class="example-spacer"></span>
 
+  <button mat-icon-button class="example-icon favorite-icon">
+    Login
+  </button>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <mat-icon>share</mat-icon>
+  </button>
+</mat-toolbar>
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav" fixedInViewport (click)="drawer.close()">
     <mat-toolbar>Menu</mat-toolbar>
