@@ -5,11 +5,14 @@ import {LoginComponent} from "../../components/login/login.component";
 import {MainPageComponent} from "../../components/main-page/main-page.component";
 import {UserPageComponent} from "../../components/user-page/user-page.component";
 import {AuthGuard} from "../../guards/auth.guard";
+import {VideoNewComponent} from "../../components/video-new/video-new.component";
+import {AuthenticatedGuard} from "../../guards/authenticated.guard";
 
 const routes:Routes=[
-  {path:'login',component:LoginComponent},
   {path:'',component:MainPageComponent,canActivate:[AuthGuard]},
-  {path:'user',component:UserPageComponent,canActivate:[AuthGuard]}
+  {path:'login',component:LoginComponent},
+  {path:'user',component:UserPageComponent,canActivate:[AuthGuard]},
+  {path:'video-new',component:VideoNewComponent,canActivate:[AuthenticatedGuard]}
 ]
 
 @NgModule({

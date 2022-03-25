@@ -14,6 +14,10 @@ import {MatTableModule} from "@angular/material/table";
 import {VideoComponent} from "../../components/video/video.component";
 import {UserPageComponent} from "../../components/user-page/user-page.component";
 import {LoginComponent} from "../../components/login/login.component";
+import {FlexLayoutModule} from "@angular/flex-layout";
+import {VideoNewComponent} from "../../components/video-new/video-new.component";
+import {MatFileUploadModule} from "angular-material-fileupload";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 const components=[
@@ -21,6 +25,7 @@ const components=[
   MainPageComponent,
   VideoComponent,
   UserPageComponent,
+  VideoNewComponent
 ]
 const modules=[
   CommonModule,
@@ -31,7 +36,10 @@ const modules=[
   MatSidenavModule,
   MatListModule,
   MatCardModule,
-  MatTableModule
+  MatTableModule,
+  FlexLayoutModule,
+  MatFileUploadModule,
+  ReactiveFormsModule
 ]
 @NgModule({
   declarations: [
