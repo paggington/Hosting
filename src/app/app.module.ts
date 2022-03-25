@@ -12,6 +12,7 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
 import { UserPageComponent } from './components/user-page/user-page.component';
 import {JWT_OPTIONS, JwtHelperService, JwtModule, JwtModuleOptions} from "@auth0/angular-jwt";
 import { VideoComponent } from './components/video/video.component';
+import { VideoNewComponent } from './components/video-new/video-new.component';
 
 @NgModule({
   declarations: [

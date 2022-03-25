@@ -26,7 +26,6 @@ export class AuthGuard implements CanActivate {
       },error => {
         if(error.status==403||401){
           localStorage.clear();
-          this.snack.errorTokens();
         }
       })
       return true;
