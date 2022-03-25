@@ -24,6 +24,8 @@ export class AuthService implements OnInit{
   }
   async logout(){
     localStorage.clear();
+    // @ts-ignore
+    this.user=null;
   }
   login(username:string,password:string):Observable<TokenResponse>{
     let body=new URLSearchParams();
@@ -60,4 +62,11 @@ export class AuthService implements OnInit{
   }
 
 
+  refreshTokens():Observable<TokenResponse> {
+    let options={
+      // @ts-ignore
+      headers:new HttpHeaders().set('Authorization','Bearer '+localStorage.getItem('r_token'))
+    }
+    return this.http.get<TokenResponse>("http://localhost:8080/api/refresh",options);
+  }
 }
