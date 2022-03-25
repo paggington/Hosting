@@ -38,4 +38,16 @@ export class SnackErrorAuthService {
       horizontalPosition:'start'
     })
   }
+  youMustLogIn(message:string){
+    this.snack.open('You must login to '+message+' page!','OK',{
+      duration:5000,
+      horizontalPosition:'center',
+      politeness:'assertive'
+    })
+    return this.snack._openedSnackBarRef?.onAction().pipe(
+      tap(_=>{
+        this.router.navigateByUrl('/login')
+      })
+    ).subscribe();
+  }
 }

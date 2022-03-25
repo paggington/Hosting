@@ -1,0 +1,17 @@
+<form [formGroup]="form">
+  <div fxLayout="row wrap" >
+    <mat-card style="width: 30%;height: auto;margin-left: 1%;margin-top: 10px" class="mat-card-video-data">
+      <mat-form-field class="example-full-width" appearance="standard" style="width: 100%">
+        <input matInput placeholder="Your video name" autocomplete="off" formControlName="videoName">
+      </mat-form-field>
+      <mat-form-field class="example-full-width" appearance="standard" style="width: 100%">
+        <textarea matInput placeholder="Your video description" rows="6" autocomplete="off" formControlName="videoDescription"></textarea>
+      </mat-form-field>
+    </mat-card>
+    <mat-card style="width: 64%;height: auto;margin-left: 1%;margin-top: 10px" class="mat-card-video-data">
+      <div class="example-full-width" appearance="standard" style="width: 100%">
+        <input type="file"  (change)="onFileSelected($event)" class="file-input">
+      </div>
+    </mat-card>
+  </div>
+</form>
