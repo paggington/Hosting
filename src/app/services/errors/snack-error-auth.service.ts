@@ -50,4 +50,10 @@ export class SnackErrorAuthService {
       })
     ).subscribe();
   }
+  snackError(message:string){
+    this.snack.open(message,'X',{
+      duration:5000,
+      horizontalPosition:'center'
+    })
+  }
 }
