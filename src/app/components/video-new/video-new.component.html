@@ -1,16 +1,57 @@
 <form [formGroup]="form">
-  <div fxLayout="row wrap" >
+  <div fxLayout="row wrap">
     <mat-card style="width: 30%;height: auto;margin-left: 1%;margin-top: 10px" class="mat-card-video-data">
       <mat-form-field class="example-full-width" appearance="standard" style="width: 100%">
         <input matInput placeholder="Your video name" autocomplete="off" formControlName="videoName">
       </mat-form-field>
       <mat-form-field class="example-full-width" appearance="standard" style="width: 100%">
-        <textarea matInput placeholder="Your video description" rows="6" autocomplete="off" formControlName="videoDescription"></textarea>
+        <textarea matInput placeholder="Your video description" rows="34" autocomplete="off"
+                  formControlName="videoDescription"></textarea>
       </mat-form-field>
     </mat-card>
     <mat-card style="width: 64%;height: auto;margin-left: 1%;margin-top: 10px" class="mat-card-video-data">
       <div class="example-full-width" appearance="standard" style="width: 100%">
-        <input type="file"  (change)="onFileSelected($event)" class="file-input">
+        <input type="file" class="file-input"
+               (change)="onFileSelected($event)" #fileUpload accept="video/3gpp,video/mp4">
+        <div class="file-upload">
+          {{fileName || "No file uploaded yet."}}
+          <button mat-mini-fab color="warn" class="upload-btn" (click)="fileUpload.click()">
+            <mat-icon>attach_file</mat-icon>
+          </button>
+        </div>
+        <br>
+        <div *ngIf="fileName" class="media">
+          <vg-player>
+            <vg-overlay-play></vg-overlay-play>
+            <vg-buffering></vg-buffering>
+
+            <vg-scrub-bar>
+              <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+              <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+            </vg-scrub-bar>
+
+            <vg-controls>
+              <vg-play-pause></vg-play-pause>
+              <vg-playback-button></vg-playback-button>
+
+              <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+
+              <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+
+              <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>
+              <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+
+              <vg-track-selector></vg-track-selector>
+              <vg-mute></vg-mute>
+              <vg-volume></vg-volume>
+              <vg-buffering></vg-buffering>
+              <vg-fullscreen></vg-fullscreen>
+            </vg-controls>
+            <video [vgMedia]="$any(media)" #media id="singleVideo" preload="auto" crossorigin class="video-player">
+              <source [src]="videoURL | videoUrl" type="video/mp4" >
+            </video>
+          </vg-player>
+        </div>
       </div>
     </mat-card>
   </div>
