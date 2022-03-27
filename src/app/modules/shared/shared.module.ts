@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {ShellComponent} from "../../components/shell/shell.component";
 import {MainPageComponent} from "../../components/main-page/main-page.component";
 import {MatToolbarModule} from "@angular/material/toolbar";
@@ -18,16 +18,23 @@ import {FlexLayoutModule} from "@angular/flex-layout";
 import {VideoNewComponent} from "../../components/video-new/video-new.component";
 import {MatFileUploadModule} from "angular-material-fileupload";
 import {ReactiveFormsModule} from "@angular/forms";
+import {VgBufferingModule} from "@videogular/ngx-videogular/buffering";
+import {VgOverlayPlayModule} from "@videogular/ngx-videogular/overlay-play";
+import {VgControlsModule} from "@videogular/ngx-videogular/controls";
+import {VgCoreModule} from "@videogular/ngx-videogular/core";
+import {AppModule} from "../../app.module";
+import {VideoUrlPipe} from "../../pipes/video-url.pipe";
 
 
-const components=[
+const components = [
   ShellComponent,
   MainPageComponent,
   VideoComponent,
   UserPageComponent,
-  VideoNewComponent
+  VideoNewComponent,
+  VideoUrlPipe
 ]
-const modules=[
+const modules = [
   CommonModule,
   MatToolbarModule,
   MatIconModule,
@@ -39,18 +46,25 @@ const modules=[
   MatTableModule,
   FlexLayoutModule,
   MatFileUploadModule,
-  ReactiveFormsModule
+  ReactiveFormsModule,
+  VgCoreModule,
+  VgControlsModule,
+  VgOverlayPlayModule,
+  VgBufferingModule
 ]
+
 @NgModule({
   declarations: [
     ...components
   ],
   imports: [
-    ...modules
+    ...modules,
+
   ],
-  exports:[
+  exports: [
     ...components,
     ...modules
   ]
 })
-export class SharedModule { }
+export class SharedModule {
+}
