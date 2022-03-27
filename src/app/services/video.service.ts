@@ -39,4 +39,14 @@ export class VideoService {
     }
     return this.http.get<Blob>("http://localhost:8080/api/v1/video/preview",params)
   }
+  saveNewVideo(data:FormData):Observable<Video>{
+    let params={
+      params:new HttpParams()// @ts-ignore
+        .set("username",data.get('username')),
+      headers: new HttpHeaders()
+        .set('Content-Type','application/multipart-form-data'),
+      responseType:'text'as'json'
+    }
+    return this.http.post<Video>("http://localhost:8080/api/v1/video/video-new",params);
+  }
 }
