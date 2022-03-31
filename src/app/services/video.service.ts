@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
+import {HttpClient, HttpEvent, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {Observable} from "rxjs";
 import {Video} from "../models/Video.model";
+import {Form} from "@angular/forms";
 
 @Injectable({
   providedIn: 'root'
@@ -29,24 +30,25 @@ export class VideoService {
     }
     return null;
   }
-  getVideoPreview(id:string):Observable<Blob>{
-    let params={
-      params:new HttpParams()
-        .set("id",id),
+
+  getVideoPreview(id: string): Observable<Blob> {
+    let params = {
+      params: new HttpParams()
+        .set("id", id),
       headers: new HttpHeaders()
-        .set('Content-Type','application/octet-stream'),
-      responseType:'blob' as 'json'
+        .set('Content-Type', 'application/octet-stream'),
+      responseType: 'blob' as 'json'
     }
-    return this.http.get<Blob>("http://localhost:8080/api/v1/video/preview",params)
+    return this.http.get<Blob>("http://localhost:8080/api/v1/video/preview", params)
   }
-  saveNewVideo(data:FormData):Observable<Video>{
-    let params={
-      params:new HttpParams()// @ts-ignore
-        .set("username",data.get('username')),
-      headers: new HttpHeaders()
-        .set('Content-Type','application/multipart-form-data'),
-      responseType:'text'as'json'
-    }
-    return this.http.post<Video>("http://localhost:8080/api/v1/video/video-new",params);
+
+  saveNewVideo(data:FormData): Observable<HttpEvent<Video>> {
+    console.log(data)
+    return this.http.post<Video>("http://localhost:8080/api/v1/video/video-new", data, {
+      observe: 'events',
+      reportProgress: true,
+      headers:new HttpHeaders()
+        .set('Authorization', 'Bearer ' + localStorage.getItem('a_token'),)
+    });
   }
 }
