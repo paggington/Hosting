@@ -1,18 +1,18 @@
-<form [formGroup]="form">
+<form [formGroup]="form" (ngSubmit)="uploadFilesFinally()">
   <div fxLayout="row wrap">
     <mat-card style="width: 30%;height: auto;margin-left: 1%;margin-top: 10px" class="mat-card-video-data">
       <mat-form-field class="example-full-width" appearance="standard" style="width: 100%">
         <input matInput placeholder="Your video name" autocomplete="off" formControlName="videoName">
       </mat-form-field>
       <mat-form-field class="example-full-width" appearance="standard" style="width: 100%">
-        <textarea matInput placeholder="Your video description" rows="34" autocomplete="off"
+        <textarea matInput placeholder="Your video description" rows="37" autocomplete="off"
                   formControlName="videoDescription"></textarea>
       </mat-form-field>
     </mat-card>
     <mat-card style="width: 64%;height: auto;margin-left: 1%;margin-top: 10px" class="mat-card-video-data">
       <div class="example-full-width" appearance="standard" style="width: 100%">
         <input type="file" class="file-input"
-               (change)="onFileSelected($event)" #fileUpload accept="video/3gpp,video/mp4">
+               (change)="onFileSelected($event)" #fileUpload accept="video/3gpp,video/mp4" required>
         <div class="file-upload">
           {{fileName || "No file uploaded yet."}}
           <button mat-mini-fab color="warn" class="upload-btn" (click)="fileUpload.click()">
@@ -21,7 +21,7 @@
         </div>
         <br>
         <div *ngIf="fileName" class="media">
-          <vg-player>
+          <vg-player (onPlayerReady)="onPlayerReady($event)">
             <vg-overlay-play></vg-overlay-play>
             <vg-buffering></vg-buffering>
 
@@ -30,7 +30,7 @@
               <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
             </vg-scrub-bar>
 
-            <vg-controls>
+            <vg-controls [vgAutohide]="true">
               <vg-play-pause></vg-play-pause>
               <vg-playback-button></vg-playback-button>
 
@@ -47,12 +47,27 @@
               <vg-buffering></vg-buffering>
               <vg-fullscreen></vg-fullscreen>
             </vg-controls>
-            <video [vgMedia]="$any(media)" #media id="singleVideo" preload="auto" crossorigin class="video-player">
-              <source [src]="videoURL | videoUrl" type="video/mp4" >
+            <video #media [vgMedia]="$any(media)" id="singleVideo" preload="auto" crossorigin class="video-player">
+              <source *ngFor="let source of sources" [src]="source | videoUrl" type="video/mp4">
             </video>
           </vg-player>
         </div>
       </div>
+    </mat-card>
+    <mat-card style="width: 30%;height:auto;margin-left: 1%;margin-top: 10px">
+      <button mat-flat-button color="primary" type="submit">
+        Save
+      </button>
+      <button mat-button color="primary" style="margin-left: 10px" (click)="reset()">
+        Decline
+      </button>
+    </mat-card>
+    <mat-card style="width: 64%;height: auto;margin-left: 1%;margin-top: 10px;transition: 0.3s ease" [ngClass]="{
+    'hidden-progress-bar':!uploadingProgressBar}">
+      <mat-progress-bar class="progress-bar" mode="determinate"
+                        [value]="uploadProgress" *ngIf="uploadProgress">
+
+      </mat-progress-bar>
     </mat-card>
   </div>
 </form>
