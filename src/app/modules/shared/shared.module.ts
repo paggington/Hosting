@@ -24,6 +24,8 @@ import {VgControlsModule} from "@videogular/ngx-videogular/controls";
 import {VgCoreModule} from "@videogular/ngx-videogular/core";
 import {AppModule} from "../../app.module";
 import {VideoUrlPipe} from "../../pipes/video-url.pipe";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {MatGridList, MatGridListModule} from "@angular/material/grid-list";
 
 
 const components = [
@@ -50,7 +52,9 @@ const modules = [
   VgCoreModule,
   VgControlsModule,
   VgOverlayPlayModule,
-  VgBufferingModule
+  VgBufferingModule,
+  MatProgressBarModule,
+  MatGridListModule
 ]
 
 @NgModule({

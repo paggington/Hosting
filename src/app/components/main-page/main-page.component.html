@@ -1,3 +1,6 @@
-<div *ngFor="let video of videos" class="">
-  <app-video [video]="video"></app-video>
-</div>
+<mat-grid-list  cols="4" gutterSize="1px">
+  <mat-grid-tile *ngFor="let video of videos" >
+    <app-video [video]="video"></app-video>
+  </mat-grid-tile>
+</mat-grid-list>
+

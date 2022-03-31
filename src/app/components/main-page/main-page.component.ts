@@ -13,7 +13,7 @@ export class MainPageComponent implements OnInit {
   videos:Video[]=[];
   private page=0;
   private totalPages=0;
-  private size=6;
+  private size=12;
   constructor(private videoService:VideoService,
               private snack:SnackErrorAuthService) { }
 
