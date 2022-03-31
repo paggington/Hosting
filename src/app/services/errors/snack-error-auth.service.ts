@@ -15,6 +15,12 @@ export class SnackErrorAuthService {
       horizontalPosition:'start'
     })
   }
+  onVideoUploaded(){
+    this.snack.open('Video successfully uploaded','OK',{
+      duration:3000,
+      horizontalPosition:'start'
+    })
+  }
   errorTokens(){
     this.snack.open('You need to login to watch your subs','OK',{
       duration:5000,
