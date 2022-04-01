@@ -42,13 +42,31 @@ export class VideoService {
     return this.http.get<Blob>("http://localhost:8080/api/v1/video/preview", params)
   }
 
-  saveNewVideo(data:FormData): Observable<HttpEvent<Video>> {
+  saveNewVideo(data: FormData): Observable<HttpEvent<Video>> {
     console.log(data)
     return this.http.post<Video>("http://localhost:8080/api/v1/video/video-new", data, {
       observe: 'events',
       reportProgress: true,
-      headers:new HttpHeaders()
+      headers: new HttpHeaders()
         .set('Authorization', 'Bearer ' + localStorage.getItem('a_token'),)
+    });
+  }
+
+  getVideoDataById(id: string): Observable<Video> {
+    return this.http.get<Video>("http://localhost:8080/api/v1/video/video", {
+
+      headers: new HttpHeaders()
+        .set('Authorization', 'Bearer ' + localStorage.getItem('a_token')),
+      params:
+        new HttpParams().set('id', id)
+    });
+  }
+  getVideoBlob(id:string):Observable<Blob>{
+    return this.http.get<Blob>("http://localhost:8080/api/v1/video", {
+      headers: new HttpHeaders()
+        .set('Authorization', 'Bearer ' + localStorage.getItem('a_token')),
+      params:
+        new HttpParams().set('id', id)
     });
   }
 }

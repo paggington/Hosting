@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Video} from "../../models/Video.model";
 import {VideoService} from "../../services/video.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-video',
@@ -13,7 +14,7 @@ export class VideoComponent implements OnInit {
 
   videoPreview:Blob=new Blob();
   videoPreviewUrl:any;
-  constructor(private videoService:VideoService) { }
+  constructor(private videoService:VideoService,private router:Router) { }
 
   ngOnInit(): void {
     this.getVideoPreview()
@@ -28,5 +29,8 @@ export class VideoComponent implements OnInit {
         reader.readAsDataURL(data);
       }
     });
+  }
+  openVideoViewer(){
+    this.router.navigate([`video/${this.video.id}`])
   }
 }

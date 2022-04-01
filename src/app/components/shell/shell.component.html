@@ -34,7 +34,7 @@
   <span class="example-spacer"></span>
 
   <button mat-icon-button class="example-icon favorite-icon">
-    <a href="/login" style="text-decoration: none;color: white" >Login</a>
+    <a href="/login" style="text-decoration: none;color: white">Login</a>
   </button>
   <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
     <mat-icon>share</mat-icon>
@@ -49,6 +49,14 @@
       <a mat-list-item routerLink="/kanban" (click)="drawer.close()">Kanban Demo</a>
       <a mat-list-item routerLink="/customers" (click)="drawer.close()">SSR Demo</a>
       <a mat-list-item href="/video-new" (click)="drawer.close()">Add Video</a>
+      <mat-list style="background-color: #3c3b3b;">
+        <p>Subscriptions</p>
+        <mat-list-item class="mat-list-item-sidenav" style="background-color: #3c3b3b">
+
+          <img src="./assets/cat.jpg" class="image-subs">
+          <p>mikro4elik</p>
+        </mat-list-item>
+      </mat-list>
     </mat-nav-list>
   </mat-sidenav>
 </mat-sidenav-container>

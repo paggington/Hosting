@@ -11,11 +11,14 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {JWT_OPTIONS, JwtHelperService, JwtModule} from "@auth0/angular-jwt";
 import { VideoComponent } from './components/video/video.component';
+import { VideoPageComponent } from './components/video-page/video-page.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    VideoPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,7 +28,8 @@ import { VideoComponent } from './components/video/video.component';
     HttpClientModule,
     ReactiveFormsModule,
     MatSnackBarModule,
-    JwtModule
+    JwtModule,
+    NgbModule
   ],
   providers: [
     {provide: JWT_OPTIONS, useValue: JWT_OPTIONS},

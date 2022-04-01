@@ -4,7 +4,7 @@
      [infiniteScrollThrottle]="50"
      (scrolled)="onScroll()"
 >
-  <mat-grid-list cols="4" gutterSize="1px">
+  <mat-grid-list cols="4" gutterSize="10px">
     <mat-grid-tile *ngFor="let video of videos">
       <app-video [video]="video"></app-video>
     </mat-grid-tile>

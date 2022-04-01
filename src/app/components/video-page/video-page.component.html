@@ -1,0 +1,76 @@
+<mat-grid-list cols="3" rowHeight="2:1" style="background-color: #23252e">
+  <mat-grid-tile colspan="2" rowspan="2">
+    <mat-card style="width: 100%;height:100%;margin-top: 10px;margin-left: 10px;margin-right: 10px" *ngIf="video">
+      <vg-player>
+        <vg-overlay-play></vg-overlay-play>
+        <vg-buffering></vg-buffering>
+
+        <vg-scrub-bar>
+          <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+          <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+        </vg-scrub-bar>
+
+        <vg-controls [vgAutohide]="true">
+          <vg-play-pause></vg-play-pause>
+          <vg-playback-button></vg-playback-button>
+
+          <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+
+          <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
+
+          <vg-time-display vgProperty="left" vgFormat="mm:ss"></vg-time-display>
+          <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+
+          <vg-track-selector></vg-track-selector>
+          <vg-mute></vg-mute>
+          <vg-volume></vg-volume>
+          <vg-buffering></vg-buffering>
+          <vg-fullscreen></vg-fullscreen>
+        </vg-controls>
+        <video #media [vgMedia]="$any(media)" id="singleVideo" preload="auto" crossorigin class="video-player">
+          <source [src]="videoUrlString | videoUrl" type="video/mp4">
+        </video>
+      </vg-player>
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile rowspan="3">
+    <mat-card style="width: 100%;height:100%;margin-top: 10px;margin-right: 10px">
+
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="2">
+    <mat-card style="width: 100%;height:100%;margin-top: 10px;margin-left: 10px;margin-right: 10px">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm">
+            <h2>{{video?.videoName}}</h2>
+          </div>
+          <div class="col-sm">
+            <div class="row">
+              <div class="col">
+                <mat-icon>expand_less</mat-icon>
+                <p>Like</p>
+              </div>
+              <div class="col">
+                <mat-icon>expand_more</mat-icon>
+                <p>Dislike</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm">
+            {{video?.views}} views
+          </div>
+        </div>
+      </div>
+
+      <hr>
+      <p style="color: #9e9e9e">{{video?.dateOfPublication}}</p>
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="3">
+    <mat-card style="width: 100%;height:100%;margin-top: 10px;margin-left: 10px;margin-right: 10px">
+
+    </mat-card>
+  </mat-grid-tile>
+
+</mat-grid-list>
