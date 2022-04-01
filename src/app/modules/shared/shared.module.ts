@@ -8,12 +8,10 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatInputModule} from "@angular/material/input";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatListModule} from "@angular/material/list";
-import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatCardModule} from "@angular/material/card";
 import {MatTableModule} from "@angular/material/table";
 import {VideoComponent} from "../../components/video/video.component";
 import {UserPageComponent} from "../../components/user-page/user-page.component";
-import {LoginComponent} from "../../components/login/login.component";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {VideoNewComponent} from "../../components/video-new/video-new.component";
 import {MatFileUploadModule} from "angular-material-fileupload";
@@ -22,10 +20,10 @@ import {VgBufferingModule} from "@videogular/ngx-videogular/buffering";
 import {VgOverlayPlayModule} from "@videogular/ngx-videogular/overlay-play";
 import {VgControlsModule} from "@videogular/ngx-videogular/controls";
 import {VgCoreModule} from "@videogular/ngx-videogular/core";
-import {AppModule} from "../../app.module";
 import {VideoUrlPipe} from "../../pipes/video-url.pipe";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
-import {MatGridList, MatGridListModule} from "@angular/material/grid-list";
+import { MatGridListModule} from "@angular/material/grid-list";
+import {InfiniteScrollModule} from "ngx-infinite-scroll";
 
 
 const components = [
@@ -34,7 +32,7 @@ const components = [
   VideoComponent,
   UserPageComponent,
   VideoNewComponent,
-  VideoUrlPipe
+  VideoUrlPipe,
 ]
 const modules = [
   CommonModule,
@@ -54,7 +52,8 @@ const modules = [
   VgOverlayPlayModule,
   VgBufferingModule,
   MatProgressBarModule,
-  MatGridListModule
+  MatGridListModule,
+  InfiniteScrollModule
 ]
 
 @NgModule({
