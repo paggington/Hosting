@@ -1,6 +1,12 @@
-<mat-grid-list  cols="4" gutterSize="1px">
-  <mat-grid-tile *ngFor="let video of videos" >
-    <app-video [video]="video"></app-video>
-  </mat-grid-tile>
-</mat-grid-list>
-
+<div class="search-results"
+     infinite-scroll
+     [infiniteScrollDistance]="2"
+     [infiniteScrollThrottle]="50"
+     (scrolled)="onScroll()"
+>
+  <mat-grid-list cols="4" gutterSize="1px">
+    <mat-grid-tile *ngFor="let video of videos">
+      <app-video [video]="video"></app-video>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

@@ -12,8 +12,8 @@ import {JsonPipe} from "@angular/common";
 export class MainPageComponent implements OnInit {
   videos:Video[]=[];
   private page=0;
-  private totalPages=0;
-  private size=12;
+  private totalPages=1;
+  private size=8;
   constructor(private videoService:VideoService,
               private snack:SnackErrorAuthService) { }
 
@@ -31,5 +31,10 @@ export class MainPageComponent implements OnInit {
         this.snack.errorVideo("Server error, try again later")
       }
     });
+  }
+
+  onScroll() {
+    this.page+=1;
+    this.getVideos();
   }
 }
