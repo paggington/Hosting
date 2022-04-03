@@ -9,7 +9,7 @@
                   formControlName="videoDescription"></textarea>
       </mat-form-field>
     </mat-card>
-    <mat-card style="width: 64%;height: auto;margin-left: 1%;margin-top: 10px" class="mat-card-video-data">
+    <mat-card style="width: 64%;height: auto;margin-left: 1%;margin-top: 10px;z-index: auto" class="mat-card-video-data">
       <div class="example-full-width" appearance="standard" style="width: 100%">
         <input type="file" class="file-input"
                (change)="onFileSelected($event)" #fileUpload accept="video/3gpp,video/mp4" required>
@@ -30,7 +30,7 @@
               <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
             </vg-scrub-bar>
 
-            <vg-controls [vgAutohide]="true">
+            <vg-controls [vgAutohide]="true" >
               <vg-play-pause></vg-play-pause>
               <vg-playback-button></vg-playback-button>
 
