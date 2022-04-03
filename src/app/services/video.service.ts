@@ -48,25 +48,59 @@ export class VideoService {
       observe: 'events',
       reportProgress: true,
       headers: new HttpHeaders()
-        .set('Authorization', 'Bearer ' + localStorage.getItem('a_token'),)
+        .set('Authorization', 'Bearer ' + localStorage.getItem('a_token'))
     });
   }
+  likeIsSetForVideoByUser(videoId:string,username:string):Observable<{dislikeSet:boolean}>{
+    console.log(videoId)
+     return this.http.get<{dislikeSet:boolean}>(`http://localhost:8080/api/v1/like/get-user-like-stat-for-video?videoID=${videoId}&username=${username}`,
+       {
+         headers: new HttpHeaders()
+           .set('Authorization', 'Bearer ' + localStorage.getItem('a_token')),
 
+       });
+  }
   getVideoDataById(id: string): Observable<Video> {
-    return this.http.get<Video>("http://localhost:8080/api/v1/video/video", {
-
+    return this.http.get<Video>("http://localhost:8080/api/v1/video/video?id="+id, {
       headers: new HttpHeaders()
         .set('Authorization', 'Bearer ' + localStorage.getItem('a_token')),
-      params:
-        new HttpParams().set('id', id)
+
     });
   }
-  getVideoBlob(id:string):Observable<Blob>{
+  setLikeForVideo(id:string):Observable<any>{
+    let params=new URLSearchParams();
+      params.set('id',id);
+    return this.http.get<any>(`http://localhost:8080/api/v1/like/set-like?id=${id}`,{
+      // @ts-ignore
+      params:params,
+      headers: new HttpHeaders()
+        .set('Authorization', 'Bearer ' + localStorage.getItem('a_token')),
+    })
+  }
+  setDislikeForVideo(id:string):Observable<any>{
+    let params=new URLSearchParams();
+    params.set('id',id);
+    return this.http.get<any>(`http://localhost:8080/api/v1/like/set-dislike?id=${id}`,{
+      // @ts-ignore
+      params:params,
+      headers: new HttpHeaders()
+        .set('Authorization', 'Bearer ' + localStorage.getItem('a_token')),
+    })
+  }//todo:сделать функцию удаления лайков
+  getLikesNumberForAVideo(id:string):Observable<{ dislike:number,like:number }>{
+    return this.http.get<{ dislike:number,like:number }>(`http://localhost:8080/api/v1/like/all?id=${id}`)
+  }
+  setViewForVideo(id:string):Observable<any>{
+    return this.http.post<any>(`http://localhost:8080/api/v1/video/setView?id=${id}`,{})
+  }
+  getVideoBlob(id: string): Observable<Blob> {
     return this.http.get<Blob>("http://localhost:8080/api/v1/video", {
       headers: new HttpHeaders()
         .set('Authorization', 'Bearer ' + localStorage.getItem('a_token')),
       params:
-        new HttpParams().set('id', id)
+        new HttpParams().set('id', id),
+      responseType: 'blob' as 'json',
+      reportProgress: true,
     });
   }
 }
