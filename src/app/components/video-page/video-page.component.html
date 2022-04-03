@@ -1,6 +1,6 @@
 <mat-grid-list cols="3" rowHeight="2:1" style="background-color: #23252e">
-  <mat-grid-tile colspan="2" rowspan="2">
-    <mat-card style="width: 100%;height:100%;margin-top: 10px;margin-left: 10px;margin-right: 10px" *ngIf="video">
+  <mat-grid-tile colspan="2" rowspan="2" style="z-index: 1;">
+    <mat-card style="width: 100%;height:100%;margin-top: 10px;margin-left: 10px;margin-right: 10px">
       <vg-player>
         <vg-overlay-play></vg-overlay-play>
         <vg-buffering></vg-buffering>
@@ -28,7 +28,7 @@
           <vg-fullscreen></vg-fullscreen>
         </vg-controls>
         <video #media [vgMedia]="$any(media)" id="singleVideo" preload="auto" crossorigin class="video-player">
-          <source [src]="videoUrlString | videoUrl" type="video/mp4">
+          <source *ngFor="let source of videoUrls" [src]="source | videoUrl" type="video/mp4">
         </video>
       </vg-player>
     </mat-card>
@@ -40,36 +40,52 @@
   </mat-grid-tile>
   <mat-grid-tile colspan="2">
     <mat-card style="width: 100%;height:100%;margin-top: 10px;margin-left: 10px;margin-right: 10px">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm">
-            <h2>{{video?.videoName}}</h2>
-          </div>
-          <div class="col-sm">
-            <div class="row">
-              <div class="col">
-                <mat-icon>expand_less</mat-icon>
-                <p>Like</p>
-              </div>
-              <div class="col">
-                <mat-icon>expand_more</mat-icon>
-                <p>Dislike</p>
+      <mat-card-content>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm">
+              <h2>{{video?.videoName}}</h2>
+              <p>{{video?.username}}</p>
+            </div>
+            <div class="col-sm">
+              <div class="row">
+                <div class="col btn-like" (click)="setLikeForVideo()">
+                  <mat-icon style="transform: scale(1.5)" [ngClass]="{'btn-like-active':isLikeSet}">expand_less
+                  </mat-icon>
+                  <p>{{likes == 1 ? likes + ' Like' : likes + ' Likes'}}</p>
+                </div>
+                <div class="col btn-like" (click)="setDislikeForVideo()">
+                  <mat-icon style="transform: scale(1.5)" [ngClass]="{'btn-like-active':isDislikeSet}">expand_more
+                  </mat-icon>
+                  <p>{{dislikes == 1 ? dislikes + ' Dislike' : dislikes + ' Dislikes'}}</p>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-sm">
-            {{video?.views}} views
+            <div class="col-sm">
+              {{video?.views}} views
+            </div>
           </div>
         </div>
-      </div>
-
+      </mat-card-content>
+      <h3>{{video?.videoDesc}}</h3>
       <hr>
       <p style="color: #9e9e9e">{{video?.dateOfPublication}}</p>
     </mat-card>
   </mat-grid-tile>
   <mat-grid-tile colspan="3">
     <mat-card style="width: 100%;height:100%;margin-top: 10px;margin-left: 10px;margin-right: 10px">
-
+      <form action="">
+        <mat-form-field style="width: 100%" color="warn">
+          <mat-label>Your comment</mat-label>
+          <input type="text" matInput (click)="changeStateComment()">
+        </mat-form-field>
+        <div class="float-end comment-section-buttons">
+          <button mat-stroked-button *ngIf="commentAdding">POST COMMENT</button>
+          <button mat-stroked-button *ngIf="commentAdding" style="margin-left: 10px" (click)="commentAdding=false">
+            CANCEL
+          </button>
+        </div>
+      </form>
     </mat-card>
   </mat-grid-tile>
 
