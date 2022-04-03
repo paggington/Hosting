@@ -1,1 +1,12 @@
-
+.col{
+  font-weight: 600;
+}
+.btn-like{
+  cursor: pointer;
+}
+.btn-like-active{
+  color: orange;
+}
+.comment-section-buttons{
+  transition: 0.5s ease;
+}
